@@ -33,7 +33,7 @@
 				<li>Site takes user 2 to the page displaying the post.</li>
 				<li>User clicks a button to comment on the post.</li>
 				<li>Site takes user to a comment creation page.</li>
-				<li>User </li>
+				<li>User</li>
 			</ol>
 
 			<h2>Conceptual Model</h2>
