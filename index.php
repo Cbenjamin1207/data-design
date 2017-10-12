@@ -6,10 +6,17 @@
 	</head>
 
 	<body>
+		<header>
+			<h1>Data Design Project</h1>
+		</header>
+
 		<main>
-			<header>
-				<h1>Data Design Project</h1>
-			</header>
+			<h2>Persona</h2>
+
+			<h2>Use Case and Interaction Flow</h2>
+
+			<h2>Conceptual Model</h2>
+
 		</main>
 	</body>
 </html>
