@@ -33,7 +33,11 @@
 				<li>Site takes user 2 to the page displaying the post.</li>
 				<li>User clicks a button to comment on the post.</li>
 				<li>Site takes user to a comment creation page.</li>
-				<li>User</li>
+				<li>User writes content of comment and clicks the submit button.</li>
+				<li>The site displays the comment on the post and returns user 2 to the post.</li>
+				<li>User 1 wishes to reply to comment, and clicks the reply button.</li>
+				<li>User 1 completes essentially the same process.</li>
+				<li>The reply is now nested within the second user's comment, and this exchange can repeat if necessary.</li>
 			</ol>
 
 			<h2>Conceptual Model</h2>
