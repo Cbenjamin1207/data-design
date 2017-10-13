@@ -41,6 +41,31 @@
 			</ol>
 
 			<h2>Conceptual Model</h2>
+			<h3>User</h3>
+			<ul>
+				<li>userId (primary key)</li>
+				<li>userEmail</li>
+				<li>userHash</li>
+				<li>userName</li>
+				<li>userSalt</li>
+			</ul>
+
+			<h3>Post</h3>
+			<ul>
+				<li>postId (primary key)</li>
+				<li>postUserId (foreign key)</li>
+				<li>postContent</li>
+			</ul>
+
+			<h3>Comment</h3>
+			<ul>
+				<li>commentId (primary key)</li>
+				<li>commentPostId (foreign key)</li>
+				<li>commentUserId (foreign key)</li>
+				<li>commentCommentId (foreign key)</li>
+				<li>commentContent</li>
+			</ul>
+
 		</main>
 	</body>
 </html>
