@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8"/>
 		<title>Data Design Project</title>
@@ -15,20 +15,20 @@
 			<p>Name: Casey Weisgerber</p>
 			<p>Age: 23</p>
 			<p>Situation: Just finished University and is having trouble finding people to connect with.
-			Needs not only a community they are interested in but also a way to interact with others in
-			that community.</p>
+				Needs not only a community they are interested in but also a way to interact with others in
+				that community.</p>
 			<p>Difficulty: Does not know where to find other people that share their interest. Has little
-			skill in organizing meet ups, and has some social anxiety.</p>
+				skill in organizing meet ups, and has some social anxiety.</p>
 
 			<h2>Use Case and Interaction Flow</h2>
 			<p>Assuming the user has already found a community they are interested in, and has decided
-			on a post they wish to make.</p>
+				on a post they wish to make.</p>
 			<ol>
 				<li>User clicks a button to create a new post.</li>
 				<li>Site takes the user to a new post creation page.</li>
 				<li>User titles their post, adds some content, and clicks the submission button.</li>
 				<li>Site displays the users post at the top of the community, and returns the user to the
-				community page.</li>
+					community page.</li>
 				<li>Another user sees the post, and wishes to comment.</li>
 				<li>User 2 clicks on the post.</li>
 				<li>Site takes user 2 to the page displaying the post.</li>
