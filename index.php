@@ -12,12 +12,13 @@
 
 		<main>
 			<h2>Persona</h2>
-			<ul>
-				<li>17-24 years old.</li>
-				<li>Having difficulty connecting in a disconnected world.</li>
-				<li>Has trouble finding like minded individuals.</li>
-				<li>Needs some way to both find like minded individuals, and connect with them.</li>
-			</ul>
+			<p>Name: Casey Weisgerber</p>
+			<p>Age: 23</p>
+			<p>Situation: Just finished University and is having trouble finding people to connect with.
+			Needs not only a community they are interested in but also a way to interact with others in
+			that community.</p>
+			<p>Difficulty: Does not know where to find other people that share their interest. Has little
+			skill in organizing meet ups, and has some social anxiety.</p>
 
 			<h2>Use Case and Interaction Flow</h2>
 			<p>Assuming the user has already found a community they are interested in, and has decided
@@ -64,6 +65,13 @@
 				<li>commentUserId (foreign key)</li>
 				<li>commentCommentId (foreign key)</li>
 				<li>commentContent</li>
+			</ul>
+
+			<h3>Relation Types</h3>
+			<ul>
+				<li>User - Post: 1 - <em>n</em></li>
+				<li>User - Comment: 1 - <em>n</em></li>
+				<li>Post - Comment: 1 - <em>n</em></li>
 			</ul>
 
 		</main>
