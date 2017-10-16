@@ -25,21 +25,21 @@
 			<p>Assuming the user has already found a community they are interested in, and has decided
 				on a post they wish to make.</p>
 			<ol>
-				<li>User clicks a button to create a new post.</li>
-				<li>Site takes the user to a new post creation page.</li>
-				<li>User titles their post, adds some content, and clicks the submission button.</li>
-				<li>Site displays the users post at the top of the community, and returns the user to the
+				<li>Casey clicks a button to create a new post.</li>
+				<li>Site takes the Casey to a new post creation page.</li>
+				<li>Casey titles their post, adds some content, and clicks the submission button.</li>
+				<li>Site displays Casey's post at the top of the community, and returns them to the
 					community page.</li>
 				<li>Another user sees the post, and wishes to comment.</li>
-				<li>User 2 clicks on the post.</li>
-				<li>Site takes user 2 to the page displaying the post.</li>
-				<li>User clicks a button to comment on the post.</li>
-				<li>Site takes user to a comment creation page.</li>
-				<li>User writes content of comment and clicks the submit button.</li>
-				<li>The site displays the comment on the post and returns user 2 to the post.</li>
-				<li>User 1 wishes to reply to comment, and clicks the reply button.</li>
-				<li>User 1 completes essentially the same process.</li>
-				<li>The reply is now nested within the second user's comment, and this exchange can repeat if necessary.</li>
+				<li>Second User clicks on the post.</li>
+				<li>Site takes the Second User to the page displaying the post.</li>
+				<li>Second user clicks a button to comment on the post.</li>
+				<li>Site takes Second User to a comment creation page.</li>
+				<li>Second User writes content of comment and clicks the submit button.</li>
+				<li>The site displays the comment on the post and returns the Second User to the post.</li>
+				<li>Casey wishes to reply to comment, and clicks the reply button.</li>
+				<li>Casey goes through steps 8-11.</li>
+				<li>The reply is now nested within the Second User's comment, and this exchange can repeat if necessary.</li>
 			</ol>
 
 			<h2>Conceptual Model</h2>
