@@ -19,6 +19,7 @@
 				that community.</p>
 			<p>Difficulty: Does not know where to find other people that share their interest. Has little
 				skill in organizing meet ups, and has some social anxiety.</p>
+			<p>User Story: Has an idea for an interesting post and wants to engage in conversation.</p>
 
 			<h2>Use Case and Interaction Flow</h2>
 			<p>Assuming the user has already found a community they are interested in, and has decided
@@ -56,6 +57,7 @@
 				<li>postId (primary key)</li>
 				<li>postUserId (foreign key)</li>
 				<li>postContent</li>
+				<li>postDate</li>
 			</ul>
 
 			<h3>Comment</h3>
@@ -64,6 +66,7 @@
 				<li>commentPostId (foreign key)</li>
 				<li>commentUserId (foreign key)</li>
 				<li>commentCommentId (foreign key)</li>
+				<li>commentDate</li>
 				<li>commentContent</li>
 			</ul>
 
@@ -72,6 +75,7 @@
 				<li>User - Post: 1 - <em>n</em></li>
 				<li>User - Comment: 1 - <em>n</em></li>
 				<li>Post - Comment: 1 - <em>n</em></li>
+				<li>Comment - Comment: 1 - <em>n</em></li>
 			</ul>
 
 		</main>
