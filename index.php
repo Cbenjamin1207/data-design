@@ -79,6 +79,9 @@
 				<li>Comment - Comment: 1 - <em>n</em></li>
 			</ul>
 
+			<h3>ERD</h3>
+			<img src="erg-data-design.svg" alt="Shows relationships between all entities and attributes">
+
 		</main>
 	</body>
 </html>
