@@ -14,6 +14,7 @@
 			<h2>Persona</h2>
 			<p>Name: Casey Weisgerber</p>
 			<p>Age: 23</p>
+			<p>Technology: Windows 10 user, has no experience with code, but has general computer literacy.</p>
 			<p>Situation: Just finished University and is having trouble finding people to connect with.
 				Needs not only a community they are interested in but also a way to interact with others in
 				that community.</p>
