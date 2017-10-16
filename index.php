@@ -80,7 +80,7 @@
 			</ul>
 
 			<h3>ERD</h3>
-			<img src="erg-data-design.svg" alt="Shows relationships between all entities and attributes">
+			<img src="erd-data-design.svg" alt="Shows relationships between all entities and attributes">
 
 		</main>
 	</body>
