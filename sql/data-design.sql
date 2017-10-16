@@ -15,9 +15,17 @@ CREATE TABLE `user` (
 	PRIMARY KEY(userId)
 );
 
-CREATE TABLE comment (
+CREATE TABLE post (
 	postId BINARY(16) NOT NULL,
 	postUserId BINARY(16) NOT NULL,
+	postTitle VARCHAR(128) NOT NULL,
 	postContent VARCHAR(65535) NOT NULL,
 	postDate DATETIME(6) NOT NULL,
+	INDEX(postUserId),
+	FOREIGN KEY(postUserId) REFERENCES `user`(userId),
+	PRIMARY KEY(postID)
+);
+
+CREATE TABLE comment (
+	commentId
 )
