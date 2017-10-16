@@ -15,6 +15,7 @@ CREATE TABLE `user` (
 	PRIMARY KEY(userId)
 );
 
+-- Creates a table for the post, and all attributes
 CREATE TABLE post (
 	postId BINARY(16) NOT NULL,
 	postUserId BINARY(16) NOT NULL,
@@ -26,6 +27,7 @@ CREATE TABLE post (
 	PRIMARY KEY(postID)
 );
 
+-- Creates a table for the comment, and all attributes.
 CREATE TABLE comment (
 	commentId BINARY(16) NOT NULL,
 	commentPostId BINARY(16) NOT NULL,
