@@ -56,6 +56,7 @@
 			<ul>
 				<li>postId (primary key)</li>
 				<li>postUserId (foreign key)</li>
+				<li>postTitle</li>
 				<li>postContent</li>
 				<li>postDate</li>
 			</ul>
