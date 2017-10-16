@@ -30,7 +30,7 @@
 				<li>Casey titles their post, adds some content, and clicks the submission button.</li>
 				<li>Site displays Casey's post at the top of the community, and returns them to the
 					community page.</li>
-				<li>Another user sees the post, and wishes to comment.</li>
+				<li>A Second User sees the post, and wishes to comment.</li>
 				<li>Second User clicks on the post.</li>
 				<li>Site takes the Second User to the page displaying the post.</li>
 				<li>Second user clicks a button to comment on the post.</li>
@@ -58,7 +58,7 @@
 				<li>postUserId (foreign key)</li>
 				<li>postTitle</li>
 				<li>postContent</li>
-				<li>postDate</li>
+				<li>postDateTime</li>
 			</ul>
 
 			<h3>Comment</h3>
@@ -67,7 +67,7 @@
 				<li>commentPostId (foreign key)</li>
 				<li>commentUserId (foreign key)</li>
 				<li>commentCommentId (foreign key)</li>
-				<li>commentDate</li>
+				<li>commentDateTime</li>
 				<li>commentContent</li>
 			</ul>
 
