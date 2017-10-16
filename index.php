@@ -17,7 +17,7 @@
 			<p>Situation: Just finished University and is having trouble finding people to connect with.
 				Needs not only a community they are interested in but also a way to interact with others in
 				that community.</p>
-			<p>Difficulty: Does not know where to find other people that share their interest. Has little
+			<p>Frustrations: Does not know where to find other people that share their interest. Has little
 				skill in organizing meet ups, and has some social anxiety.</p>
 			<p>User Story: Has an idea for an interesting post and wants to engage in conversation.</p>
 
