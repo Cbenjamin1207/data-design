@@ -27,5 +27,17 @@ CREATE TABLE post (
 );
 
 CREATE TABLE comment (
-	commentId
-)
+	commentId BINARY(16) NOT NULL,
+	commentPostId BINARY(16) NOT NULL,
+	commentUserId BINARY(16) NOT NULL,
+	commentCommentID BINARY(16),
+	commentDate DATETIME(6) NOT NULL,
+	commentContent VARCHAR(65535) NOT NULL,
+	INDEX(commentPostId),
+	INDEX(commentUserID),
+	INDEX(commentCommentId),
+	FOREIGN KEY(commentPostId) REFERENCES post(postId),
+	FOREIGN KEY(commentUserId) REFERENCES `user`(userId),
+	FOREIGN KEY(commentCommentId) REFERENCES comment(commentId),
+	PRIMARY KEY(commentId)
+);
