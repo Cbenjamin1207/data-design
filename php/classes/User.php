@@ -126,8 +126,19 @@ class User {
 	 * mutator method for userHash
 	 *
 	 * @param string $newUserHash User's new Hash
+	 * @throws \InvalidArgumentException if hash is not in hexit form
+	 * @throws \RangeException if hash is not exactly 128 characters
 	 */
 	public function setUserHash($newUserHash): void {
+		$newUserHash = trim($newUserHash);
+		$newUserHash = strtolower($newUserHash);
+		if(!ctype_xdigit($newUserHash)) {
+			throw(new \InvalidArgumentException("User Hash is not in hexit form."));
+		}
+		if(strlen($newUserHash) !== 128) {
+			throw(new \RangeException("User Hash does not contain 128 characters."));
+		}
+
 		$this->userHash = $newUserHash;
 	}
 
