@@ -155,8 +155,18 @@ class User {
 	 * mutator method for usersalt
 	 *
 	 * @param string $newUserSalt User's new salt
+	 * @throws \InvalidArgumentException if salt is not in hexit form
+	 * @throws \RangeException if salt is not exactly 64 characters
 	 */
 	public function setUserSalt($newUserSalt): void {
+		$newUserSalt = trim($newUserSalt);
+		$newUserSalt = strtolower($newUserSalt);
+		if(!ctype_xdigit($newUserSalt)) {
+			throw(new \InvalidArgumentException("User Salt is not in hexit form."));
+		}
+		if(strlen($newUserSalt) !== 64) {
+			throw(new \RangeException("User Salt does not contain 64 characters."));
+		}
 		$this->userSalt = $newUserSalt;
 	}
 
