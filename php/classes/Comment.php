@@ -43,7 +43,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * Date and time the comment was posted
 	 *
-	 * @var DateTime $commentDateTime
+	 * @var \DateTime $commentDateTime
 	 */
 	private $commentDateTime;
 
@@ -61,7 +61,7 @@ class Comment implements \JsonSerializable {
 	 * @param Uuid $newCommentPostId the new ID of the comment's post
 	 * @param Uuid $newCommentUserId the new ID of the comment's creator
 	 * @param Uuid $newCommentCommentId the new ID of the comment's comment
-	 * @param DateTime $newCommentDateTime the new date and time the comment was posted
+	 * @param \DateTime $newCommentDateTime the new date and time the comment was posted
 	 * @param string $newCommentContent the new content of the comment
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
@@ -182,20 +182,20 @@ class Comment implements \JsonSerializable {
 	/**
 	 * accessor method for commentDateTime
 	 *
-	 * @return DateTime the date and time the comment was created
+	 * @return \DateTime the date and time the comment was created
 	 */
-	public function getCommentDateTime() : DateTime {
+	public function getCommentDateTime() : \DateTime {
 		return($this->commentDateTime);
 	}
 
 	/**
 	 * mutator method for commentDateTime
 	 *
-	 * @param DateTime $newCommentDateTime the new date and time the comment was created
+	 * @param \DateTime $newCommentDateTime the new date and time the comment was created
 	 */
 	public function setCommentDateTime($newCommentDateTime) : void {
 		if($newCommentDateTime === null) {
-			$this->postDateTime = new DateTime();
+			$this->postDateTime = new \DateTime();
 			return;
 		}
 		try {

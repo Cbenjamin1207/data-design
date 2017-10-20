@@ -316,7 +316,7 @@ class User implements \JsonSerializable {
 				$user = new User($row["userId"], $row["userEmail"], $row["userHash"], $row["userSalt"],
 					$row["userName"]);
 				$user[$users->key()] = $user;
-				$user->next();
+				$users->next();
 			} catch(\Exception $exception) {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}

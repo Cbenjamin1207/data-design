@@ -42,7 +42,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * Date and time the post was created
 	 *
-	 * @var DateTime $postDateTime
+	 * @var \DateTime $postDateTime
 	 */
 	private $postDateTime;
 
@@ -53,7 +53,7 @@ class Post implements \JsonSerializable {
 	 * @param Uuid $newPostUserId The ID of the user who created the post
 	 * @param string $newPostTitle The title of the post
 	 * @param string $newPostContent The content of the post
-	 * @param DateTime $newPostDateTime The date and time the post was created
+	 * @param \DateTime $newPostDateTime The date and time the post was created
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -178,20 +178,20 @@ class Post implements \JsonSerializable {
 	/**
 	 * accessor method for postDateTime
 	 *
-	 * @return DateTime the date and time the post was created
+	 * @return \DateTime the date and time the post was created
 	 */
-	public function getPostDateTime(): DateTime {
+	public function getPostDateTime(): \DateTime {
 		return ($this->postDateTime);
 	}
 
 	/**
 	 * mutator method for postDateTime
 	 *
-	 * @param DateTime $newPostDateTime the new date and time the post was created
+	 * @param \DateTime $newPostDateTime the new date and time the post was created
 	 */
 	public function setPostDateTime($newPostDateTime): void {
 		if($newPostDateTime === null) {
-			$this->postDateTime = new DateTime();
+			$this->postDateTime = new \DateTime();
 			return;
 		}
 		try {
