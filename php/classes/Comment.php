@@ -6,6 +6,7 @@
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class Comment implements \JsonSerializable {
+	use validateDate;
 
 	/**
 	 * ID for this comment; primary key

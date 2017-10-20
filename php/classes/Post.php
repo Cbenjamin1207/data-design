@@ -6,6 +6,7 @@
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class Post implements \JsonSerializable {
+	use validateDate;
 
 	/**
 	 * ID for this post; primary key
