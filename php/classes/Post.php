@@ -55,7 +55,7 @@ class Post {
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function _construct($newPostId, $newPostUserId, $newPostTitle, $newPostContent, $newPostDateTime) {
+	public function _construct($newPostId, $newPostUserId, $newPostTitle, $newPostContent, $newPostDateTime = null) {
 		try {
 			$this->setPostId($newPostId);
 			$this->setPostUserId($newPostUserId);
@@ -173,6 +173,9 @@ class Post {
 	 * @var DateTime $newPostDateTime the new date and time the post was created
 	 */
 	public function setPostDateTime($newPostDateTime): void {
+		if($newPostDateTime === null) {
+			$this->postDateTime = new DateTime();
+		}
 		$this->postDateTime = $newPostDateTime;
 	}
 }
