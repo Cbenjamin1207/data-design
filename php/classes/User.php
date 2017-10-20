@@ -12,29 +12,29 @@ class User {
 	 *
 	 * @var Uuid userId
 	 */
-
 	private $userId;
+
 	/**
 	 * The email associated with this user
 	 *
 	 * @var string userEmail
 	 */
-
 	private $userEmail;
+
 	/**
 	 * The hash of this user's password
 	 *
 	 * @var string userHash
 	 */
-
 	private $userHash;
+
 	/**
 	 * The salt for this user's password
 	 *
 	 * @var string userSalt
 	 */
-
 	private $userSalt;
+
 	/**
 	 *The user's display name
 	 *
