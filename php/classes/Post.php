@@ -55,7 +55,8 @@ class Post {
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function _construct($newPostId, $newPostUserId, $newPostTitle, $newPostContent, $newPostDateTime = null) {
+	public function _construct($newPostId, $newPostUserId, $newPostTitle, $newPostContent,
+										$newPostDateTime = null) {
 		try {
 			$this->setPostId($newPostId);
 			$this->setPostUserId($newPostUserId);

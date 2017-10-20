@@ -78,4 +78,24 @@ class Content {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
+
+	/**
+	 * accessor method for commentId
+	 *
+	 * @return Uuid the ID of the comment
+	 */
+	public function getCommentId() : Uuid {
+		return($this->commentId);
+	}
+
+	/**
+	 * mutator method for commentId
+	 *
+	 * @var Uuid $newCommentId the new ID of the comment
+	 */
+	public function setCommentId($newCommentId) : void {
+		$this->commentId = $newCommentId;
+	}
+
+
 }
