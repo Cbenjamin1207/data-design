@@ -158,4 +158,22 @@ class Post {
 			}
 			$this->postContent = $newPostContent;
 		}
+
+		/**
+		 * accessor method for postDateTime
+		 *
+		 * @return DateTime the date and time the post was created
+		 */
+		public function getPostDateTime() : DateTime {
+			return($this->postDateTime);
+		}
+
+		/**
+		 * mutator method for postDateTime
+		 *
+		 * @var DateTime $newPostDateTime the new date and time the post was created
+		 */
+		public function setPostDateTime($newPostDateTime) : void {
+			$this->postDateTime = $newPostDateTime;
+		}
 }
