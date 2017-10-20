@@ -7,6 +7,7 @@
  */
 class Comment implements \JsonSerializable {
 	use validateDate;
+	use validateUuid;
 
 	/**
 	 * ID for this comment; primary key
@@ -94,7 +95,13 @@ class Comment implements \JsonSerializable {
 	 * @var Uuid $newCommentId the new ID of the comment
 	 */
 	public function setCommentId($newCommentId) : void {
-		$this->commentId = $newCommentId;
+		try {
+			$uuid = self::validateUuid($newCommentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->commentId = $uuid;
 	}
 
 	/**
@@ -112,7 +119,13 @@ class Comment implements \JsonSerializable {
 	 * @var Uuid $newCommentPostId the new ID of the comment's post
 	 */
 	public function setCommentPostId($newCommentPostId) : void {
-		$this->commentPostId = $newCommentPostId;
+		try {
+			$uuid = self::validateUuid($newCommentPostId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->commentPostId = $uuid;
 	}
 
 	/**
@@ -130,7 +143,13 @@ class Comment implements \JsonSerializable {
 	 * @var Uuid $newCommentUserId the new ID of the comment's creator
 	 */
 	public function setCommentUserId($newCommentUserId) : void {
-		$this->commentUserId = $newCommentUserId;
+		try {
+			$uuid = self::validateUuid($newCommentUserId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->commentUserId = $uuid;
 	}
 
 	/**
@@ -148,7 +167,13 @@ class Comment implements \JsonSerializable {
 	 * @var Uuid $newCommentCommentId the new ID fo the comment's comment
 	 */
 	public function setCommentCommentId($newCommentCommentId) : void {
-		$this->commentCommentId = $newCommentCommentId;
+		try {
+			$uuid = self::validateUuid($newCommentCommentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->commentCommentId = $uuid;
 	}
 
 	/**
