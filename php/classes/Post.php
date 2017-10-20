@@ -214,7 +214,7 @@ class Post implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		$formattedDate = $this->postDateTime->format("Y-m-d H:i:s.u");
-		$parameters = ["postId" => $this->postId->getBytes(), "postUserId" => $this->postUserId-.getBytes(),
+		$parameters = ["postId" => $this->postId->getBytes(), "postUserId" => $this->postUserId->getBytes(),
 			"postTitle" => $this->postTitle, "postContent" => $this->postContent, "postDateTime" => $formattedDate];
 		$statement->execute($parameters);
 	}
