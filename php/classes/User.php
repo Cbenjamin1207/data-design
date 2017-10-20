@@ -5,7 +5,7 @@
  *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
-class User {
+class User implements \JsonSerializable {
 
 	/**
 	 *ID for this user, the primary key
@@ -196,7 +196,22 @@ class User {
 		if(strlen($newUserName) > 32) {
 			throw(new \RangeException("username too large"));
 		}
-
 		$this->userName = $newUserName;
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["tweetId"] = $this->tweetId->toString();
+		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		return($fields);
 	}
 }

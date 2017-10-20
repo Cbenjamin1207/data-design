@@ -5,7 +5,7 @@
  *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
-class Post {
+class Post implements \JsonSerializable {
 
 	/**
 	 * ID for this post; primary key
@@ -179,5 +179,21 @@ class Post {
 			return;
 		}
 		$this->postDateTime = $newPostDateTime;
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["tweetId"] = $this->tweetId->toString();
+		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		return($fields);
 	}
 }

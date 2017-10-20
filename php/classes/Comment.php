@@ -5,7 +5,7 @@
  *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
-class Comment {
+class Comment implements \JsonSerializable {
 
 	/**
 	 * ID for this comment; primary key
@@ -195,5 +195,21 @@ class Comment {
 			throw(new \InvalidArgumentException("Comment is empty or insecure"));
 		}
 		$this->commentContent = $newCommentContent;
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["tweetId"] = $this->tweetId->toString();
+		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		return($fields);
 	}
 }
