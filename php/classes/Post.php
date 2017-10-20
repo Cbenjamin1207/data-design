@@ -202,6 +202,24 @@ class Post implements \JsonSerializable {
 	}
 
 	/**
+	 * Inserts this post into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when $pdo is not a PDO connection object
+	 */
+	public function insert(\PDO $pdo) : void {
+		$query = "INSERT INTO post(postId, postUserId, postTitle, postContent, postDateTime) 
+			VALUES(:postId, :postUserId, :postTitle, :postContent, :postDateTime)";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->postDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["postId" => $this->postId->getBytes(), "postUserId" => $this->postUserId-.getBytes(),
+			"postTitle" => $this->postTitle, "postContent" => $this->postContent, "postDateTime" => $formattedDate];
+		$statement->execute($parameters);
+	}
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
