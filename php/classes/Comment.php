@@ -3,6 +3,9 @@
 /**
  * A comment created on a post
  *
+ * This comment can be either a reply to a post, or a reply to another comment. Allows users to
+ * engage in discussion about various topics.
+ *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class Comment implements \JsonSerializable {
