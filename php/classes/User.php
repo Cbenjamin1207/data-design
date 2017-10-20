@@ -56,7 +56,7 @@ class User implements \JsonSerializable {
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function _construct($newUserId, $newUserEmail, $newUserHash, $newUserSalt, $newUserName) {
+	public function __construct($newUserId, string $newUserEmail, string $newUserHash, string $newUserSalt, string $newUserName) {
 		try {
 			$this->setUserId($newUserId);
 			$this->setUserEmail($newUserEmail);
@@ -110,7 +110,7 @@ class User implements \JsonSerializable {
 	 * @throws \InvalidArgumentException if $newUserEmail is not a string or insecure
 	 * @throws \TypeError if $newUserEmail is not a string
 	 */
-	public function setUserEmail($newUserEmail): void {
+	public function setUserEmail(string $newUserEmail): void {
 		$newUserEmail = trim($newUserEmail);
 		$newUserEmail = filter_var($newUserEmail, FILTER_VALIDATE_EMAIL);
 		if(empty($newUserEmail) === true) {
@@ -136,7 +136,7 @@ class User implements \JsonSerializable {
 	 * @throws \InvalidArgumentException if hash is not in hexit form
 	 * @throws \RangeException if hash is not exactly 128 characters
 	 */
-	public function setUserHash($newUserHash): void {
+	public function setUserHash(string $newUserHash): void {
 		$newUserHash = trim($newUserHash);
 		$newUserHash = strtolower($newUserHash);
 		if(!ctype_xdigit($newUserHash)) {
@@ -165,7 +165,7 @@ class User implements \JsonSerializable {
 	 * @throws \InvalidArgumentException if salt is not in hexit form
 	 * @throws \RangeException if salt is not exactly 64 characters
 	 */
-	public function setUserSalt($newUserSalt): void {
+	public function setUserSalt(string $newUserSalt): void {
 		$newUserSalt = trim($newUserSalt);
 		$newUserSalt = strtolower($newUserSalt);
 		if(!ctype_xdigit($newUserSalt)) {
@@ -194,7 +194,7 @@ class User implements \JsonSerializable {
 	 * @throws \RangeException if $newUserName is > 32 characters
 	 * @throws \TypeError if $newUserName is not a string
 	 */
-	public function setUserName($newUserName) : void {
+	public function setUserName(string $newUserName) : void {
 		$newUserName = trim($newUserName);
 		$newUserName = filter_var($newUserName, FILTER_SANITIZE_STRING);
 		if(empty($newTweetContent) === true) {

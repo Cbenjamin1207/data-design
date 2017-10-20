@@ -69,7 +69,7 @@ class Comment implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 	public function __construct($newCommentId, $newCommentPostId, $newCommentUserId, $newCommentCommentId,
-										$newCommentDateTime = null, $newCommentContent) {
+										$newCommentDateTime = null, string $newCommentContent) {
 		try {
 			$this->setCommentId($newCommentId);
 			$this->setCommentPostId($newCommentPostId);
@@ -222,7 +222,7 @@ class Comment implements \JsonSerializable {
 	 * @var string $newCommentContent the new content of the comment
 	 * @throws \InvalidArgumentException if comment is empty or insecure
 	 */
-	public function setCommentContent($newCommentContent) : void {
+	public function setCommentContent(string $newCommentContent) : void {
 		$newCommentContent = trim($newCommentContent);
 		$newCommentContent = filter_var($newCommentContent, FILTER_SANITIZE_STRING);
 		if(empty($newCommentContent) === true) {

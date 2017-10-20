@@ -57,7 +57,7 @@ class Post implements \JsonSerializable {
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function _construct($newPostId, $newPostUserId, $newPostTitle, $newPostContent,
+	public function __construct($newPostId, $newPostUserId, string $newPostTitle, string $newPostContent,
 										$newPostDateTime = null) {
 		try {
 			$this->setPostId($newPostId);
@@ -136,7 +136,7 @@ class Post implements \JsonSerializable {
 	 * @throws \TypeError if $newPostTitle is not a string
 	 * @throws \RangeException if $newPostTitle is longer than 128 characters
 	 */
-	public function setPostTitle($newPostTitle): void {
+	public function setPostTitle(string $newPostTitle): void {
 		$newPostTitle = trim($newPostTitle);
 		$newPostTitle = filter_var($newPostTitle, FILTER_SANITIZE_STRING);
 		if(empty($newPostTitle) === true) {
@@ -164,7 +164,7 @@ class Post implements \JsonSerializable {
 	 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
 	 * @throws \TypeError if $newPostContent is not a string
 	 */
-	public function setPostContent($newPostContent): void {
+	public function setPostContent(string $newPostContent): void {
 		$newPostContent = trim($newPostContent);
 		$newPostContent = filter_var($newPostContent, FILTER_SANITIZE_STRING);
 		if(empty($newPostContent) === true) {
