@@ -120,6 +120,7 @@ class Post {
 	 * @var string $newPostTitle the new title of the post
 	 * @throws \InvalidArgumentException if $newPostTitle is not a string or insecure
 	 * @throws \TypeError if $newPostTitle is not a string
+	 * @throws \RangeException if $newPostTitle is longer than 128 characters
 	 */
 	public function setPostTitle($newPostTitle) : void {
 		$newPostTitle = trim($newPostTitle);
@@ -127,8 +128,34 @@ class Post {
 		if(empty($newPostTitle) === true){
 			throw(new \InvalidArgumentException("Post title is empty or insecure"));
 		}
+		if(strlen($newPostTitle) > 128) {
+			throw(new \RangeException("Post title is too long"));
+		}
 		$this->postTitle = $newPostTitle;
 	}
 
+	/**
+	 * accessor method for postContent
+	 *
+	 * @return string the content of the post
+	 */
+	public function getPostContent() : string {
+		return ($this->postContent);
+	}
 
+		/**
+		 * mutator method for postContent
+		 *
+		 * @var string $newPostContent the new content of the post
+		 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
+		 * @throws \TypeError if $newPostContent is not a string
+		 */
+		public function setPostContent($newPostContent) : void {
+			$newPostContent = trim($newPostContent);
+			$newPostContent = filter_var($newPostContent, FILTER_SANITIZE_STRING);
+			if(empty($newPostContent) === true) {
+				throw(new \InvalidArgumentException("Post content is empty or insecure"));
+			}
+			$this->postContent = $newPostContent;
+		}
 }
