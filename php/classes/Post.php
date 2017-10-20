@@ -62,8 +62,7 @@ class Post {
 			$this->setPostTitle($newPostTitle);
 			$this->setPostContent($newPostContent);
 			$this->setPostDateTime($newPostDateTime);
-		}
-		catch(\InvalidArgumentException|\RangeException|\Exception|\TypeError $exception) {
+		} catch(\InvalidArgumentException|\RangeException|\Exception|\TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -74,8 +73,8 @@ class Post {
 	 *
 	 * @return Uuid value of the post ID
 	 */
-	public function getPostId() : Uuid {
-		return($this->postId);
+	public function getPostId(): Uuid {
+		return ($this->postId);
 	}
 
 	/**
@@ -83,7 +82,7 @@ class Post {
 	 *
 	 * @var Uuid $newPostId the new value of the post ID
 	 */
-	public function setPostId($newPostId) : void {
+	public function setPostId($newPostId): void {
 		$this->postId = $newPostId;
 	}
 
@@ -92,8 +91,8 @@ class Post {
 	 *
 	 * @return Uuid value of the post creator's ID
 	 */
-	public function getPostUserId() : Uuid {
-		return($this->postUserId);
+	public function getPostUserId(): Uuid {
+		return ($this->postUserId);
 	}
 
 	/**
@@ -101,7 +100,7 @@ class Post {
 	 *
 	 * @var Uuid $newPostUserId the new value of the post creator's ID
 	 */
-	public function setPostUserId($newPostUserId) : void {
+	public function setPostUserId($newPostUserId): void {
 		$this->postUserId = $newPostUserId;
 	}
 
@@ -110,8 +109,8 @@ class Post {
 	 *
 	 * @return string the title of the post
 	 */
-	public function getPostTitle() : string {
-		return($this->postTitle);
+	public function getPostTitle(): string {
+		return ($this->postTitle);
 	}
 
 	/**
@@ -122,10 +121,10 @@ class Post {
 	 * @throws \TypeError if $newPostTitle is not a string
 	 * @throws \RangeException if $newPostTitle is longer than 128 characters
 	 */
-	public function setPostTitle($newPostTitle) : void {
+	public function setPostTitle($newPostTitle): void {
 		$newPostTitle = trim($newPostTitle);
 		$newPostTitle = filter_var($newPostTitle, FILTER_SANITIZE_STRING);
-		if(empty($newPostTitle) === true){
+		if(empty($newPostTitle) === true) {
 			throw(new \InvalidArgumentException("Post title is empty or insecure"));
 		}
 		if(strlen($newPostTitle) > 128) {
@@ -139,41 +138,41 @@ class Post {
 	 *
 	 * @return string the content of the post
 	 */
-	public function getPostContent() : string {
+	public function getPostContent(): string {
 		return ($this->postContent);
 	}
 
-		/**
-		 * mutator method for postContent
-		 *
-		 * @var string $newPostContent the new content of the post
-		 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
-		 * @throws \TypeError if $newPostContent is not a string
-		 */
-		public function setPostContent($newPostContent) : void {
-			$newPostContent = trim($newPostContent);
-			$newPostContent = filter_var($newPostContent, FILTER_SANITIZE_STRING);
-			if(empty($newPostContent) === true) {
-				throw(new \InvalidArgumentException("Post content is empty or insecure"));
-			}
-			$this->postContent = $newPostContent;
+	/**
+	 * mutator method for postContent
+	 *
+	 * @var string $newPostContent the new content of the post
+	 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
+	 * @throws \TypeError if $newPostContent is not a string
+	 */
+	public function setPostContent($newPostContent): void {
+		$newPostContent = trim($newPostContent);
+		$newPostContent = filter_var($newPostContent, FILTER_SANITIZE_STRING);
+		if(empty($newPostContent) === true) {
+			throw(new \InvalidArgumentException("Post content is empty or insecure"));
 		}
+		$this->postContent = $newPostContent;
+	}
 
-		/**
-		 * accessor method for postDateTime
-		 *
-		 * @return DateTime the date and time the post was created
-		 */
-		public function getPostDateTime() : DateTime {
-			return($this->postDateTime);
-		}
+	/**
+	 * accessor method for postDateTime
+	 *
+	 * @return DateTime the date and time the post was created
+	 */
+	public function getPostDateTime(): DateTime {
+		return ($this->postDateTime);
+	}
 
-		/**
-		 * mutator method for postDateTime
-		 *
-		 * @var DateTime $newPostDateTime the new date and time the post was created
-		 */
-		public function setPostDateTime($newPostDateTime) : void {
-			$this->postDateTime = $newPostDateTime;
-		}
+	/**
+	 * mutator method for postDateTime
+	 *
+	 * @var DateTime $newPostDateTime the new date and time the post was created
+	 */
+	public function setPostDateTime($newPostDateTime): void {
+		$this->postDateTime = $newPostDateTime;
+	}
 }
