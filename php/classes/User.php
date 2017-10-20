@@ -10,35 +10,35 @@ class User {
 	/**
 	 *ID for this user, the primary key
 	 *
-	 * @var Uuid userId
+	 * @var Uuid $userId
 	 */
 	private $userId;
 
 	/**
 	 * The email associated with this user
 	 *
-	 * @var string userEmail
+	 * @var string $userEmail
 	 */
 	private $userEmail;
 
 	/**
 	 * The hash of this user's password
 	 *
-	 * @var string userHash
+	 * @var string $userHash
 	 */
 	private $userHash;
 
 	/**
 	 * The salt for this user's password
 	 *
-	 * @var string userSalt
+	 * @var string $userSalt
 	 */
 	private $userSalt;
 
 	/**
 	 *The user's display name
 	 *
-	 * @var string userName
+	 * @var string $userName
 	 */
 	private $userName;
 
