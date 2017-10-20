@@ -3,6 +3,8 @@
 /**
  * A post created by a User
  *
+ * A post has both a title and content, users can use the post title as an index.
+ *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class Post implements \JsonSerializable {

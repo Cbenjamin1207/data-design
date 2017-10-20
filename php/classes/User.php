@@ -3,6 +3,9 @@
 /**
  * An individual user on the site
  *
+ * Users can create both posts and comments. An email address and username are required
+ * to create a user account.
+ *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class User implements \JsonSerializable {
