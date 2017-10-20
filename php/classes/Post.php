@@ -72,6 +72,20 @@ class Post {
 	/**
 	 * accessor method for postId
 	 *
-	 * @return
+	 * @return Uuid value of the post ID
 	 */
+	public function getPostId() : Uuid {
+		return($this->postId);
+	}
+
+	/**
+	 * mutator method for postId
+	 *
+	 * @var Uuid $newPostId the new value of the post ID
+	 */
+	public function setPostId($newPostId) : void {
+		$this->postId = $newPostId;
+	}
+
+
 }
