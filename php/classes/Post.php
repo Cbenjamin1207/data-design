@@ -176,6 +176,7 @@ class Post {
 	public function setPostDateTime($newPostDateTime): void {
 		if($newPostDateTime === null) {
 			$this->postDateTime = new DateTime();
+			return;
 		}
 		$this->postDateTime = $newPostDateTime;
 	}

@@ -150,4 +150,26 @@ class Content {
 	public function setCommentCommentId($newCommentCommentId) : void {
 		$this->commentCommentId = $newCommentCommentId;
 	}
+
+	/**
+	 * accessor method for commentDateTime
+	 *
+	 * @return DateTime the date and time the comment was created
+	 */
+	public function getCommentDateTime() : DateTime {
+		return($this->commentDateTime);
+	}
+
+	/**
+	 * mutator method for commentDateTime
+	 *
+	 * @var DateTime $newCommentDateTime the new date and time the comment was created
+	 */
+	public function setCommentDateTime($newCommentDateTime) : void {
+		if($newCommentDateTime === null) {
+			$this->postDateTime = new DateTime();
+			return;
+		}
+		$this->commentDateTime = $newCommentDateTime;
+	}
 }
