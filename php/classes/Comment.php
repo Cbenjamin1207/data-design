@@ -114,4 +114,22 @@ class Content {
 	public function setCommentPostId($newCommentPostId) : void {
 		$this->commmentPostId = $newCommentPostId;
 	}
+
+	/**
+	 * accessor method for commentUserId
+	 *
+	 * @return Uuid the ID of the comment's creator
+	 */
+	public function getCommentUserId() : Uuid {
+		return($this->commentUserId);
+	}
+
+	/**
+	 * mutator method for commentUserId
+	 *
+	 * @var Uuid $newCommentUserId the new ID of the comment's creator
+	 */
+	public function setCommentUserId($newCommentUserId) : void {
+		$this->commentUserId = $newCommentUserId;
+	}
 }
