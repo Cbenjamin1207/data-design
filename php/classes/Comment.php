@@ -95,7 +95,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentId
 	 *
-	 * @var Uuid $newCommentId the new ID of the comment
+	 * @param Uuid $newCommentId the new ID of the comment
 	 */
 	public function setCommentId($newCommentId) : void {
 		try {
@@ -119,7 +119,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentPostId
 	 *
-	 * @var Uuid $newCommentPostId the new ID of the comment's post
+	 * @param Uuid $newCommentPostId the new ID of the comment's post
 	 */
 	public function setCommentPostId($newCommentPostId) : void {
 		try {
@@ -143,7 +143,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentUserId
 	 *
-	 * @var Uuid $newCommentUserId the new ID of the comment's creator
+	 * @param Uuid $newCommentUserId the new ID of the comment's creator
 	 */
 	public function setCommentUserId($newCommentUserId) : void {
 		try {
@@ -167,7 +167,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentCommentId
 	 *
-	 * @var Uuid $newCommentCommentId the new ID fo the comment's comment
+	 * @param Uuid $newCommentCommentId the new ID fo the comment's comment
 	 */
 	public function setCommentCommentId($newCommentCommentId) : void {
 		try {
@@ -191,7 +191,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentDateTime
 	 *
-	 * @var DateTime $newCommentDateTime the new date and time the comment was created
+	 * @param DateTime $newCommentDateTime the new date and time the comment was created
 	 */
 	public function setCommentDateTime($newCommentDateTime) : void {
 		if($newCommentDateTime === null) {
@@ -219,7 +219,7 @@ class Comment implements \JsonSerializable {
 	/**
 	 * mutator method for commentContent
 	 *
-	 * @var string $newCommentContent the new content of the comment
+	 * @param string $newCommentContent the new content of the comment
 	 * @throws \InvalidArgumentException if comment is empty or insecure
 	 */
 	public function setCommentContent(string $newCommentContent) : void {

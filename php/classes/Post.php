@@ -83,7 +83,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * mutator method for postId
 	 *
-	 * @var Uuid $newPostId the new value of the post ID
+	 * @param Uuid $newPostId the new value of the post ID
 	 */
 	public function setPostId($newPostId): void {
 		try {
@@ -107,7 +107,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * mutator method for postUserId
 	 *
-	 * @var Uuid $newPostUserId the new value of the post creator's ID
+	 * @param Uuid $newPostUserId the new value of the post creator's ID
 	 */
 	public function setPostUserId($newPostUserId): void {
 		try {
@@ -131,7 +131,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * mutator method for postTitle
 	 *
-	 * @var string $newPostTitle the new title of the post
+	 * @param string $newPostTitle the new title of the post
 	 * @throws \InvalidArgumentException if $newPostTitle is not a string or insecure
 	 * @throws \TypeError if $newPostTitle is not a string
 	 * @throws \RangeException if $newPostTitle is longer than 128 characters
@@ -160,7 +160,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * mutator method for postContent
 	 *
-	 * @var string $newPostContent the new content of the post
+	 * @param string $newPostContent the new content of the post
 	 * @throws \InvalidArgumentException if $newPostContent is not a string or insecure
 	 * @throws \TypeError if $newPostContent is not a string
 	 */
@@ -185,7 +185,7 @@ class Post implements \JsonSerializable {
 	/**
 	 * mutator method for postDateTime
 	 *
-	 * @var DateTime $newPostDateTime the new date and time the post was created
+	 * @param DateTime $newPostDateTime the new date and time the post was created
 	 */
 	public function setPostDateTime($newPostDateTime): void {
 		if($newPostDateTime === null) {
