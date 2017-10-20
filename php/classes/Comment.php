@@ -5,7 +5,7 @@
  *
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
-class Content {
+class Comment {
 
 	/**
 	 * ID for this comment; primary key
