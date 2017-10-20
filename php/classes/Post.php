@@ -103,5 +103,32 @@ class Post {
 	 */
 	public function setPostUserId($newPostUserId) : void {
 		$this->postUserId = $newPostUserId;
-}
+	}
+
+	/**
+	 * accessor method for postTitle
+	 *
+	 * @return string the title of the post
+	 */
+	public function getPostTitle() : string {
+		return($this->postTitle);
+	}
+
+	/**
+	 * mutator method for postTitle
+	 *
+	 * @var string $newPostTitle the new title of the post
+	 * @throws \InvalidArgumentException if $newPostTitle is not a string or insecure
+	 * @throws \TypeError if $newPostTitle is not a string
+	 */
+	public function setPostTitle($newPostTitle) : void {
+		$newPostTitle = trim($newPostTitle);
+		$newPostTitle = filter_var($newPostTitle, FILTER_SANITIZE_STRING);
+		if(empty($newPostTitle) === true){
+			throw(new \InvalidArgumentException("Post title is empty or insecure"));
+		}
+		$this->postTitle = $newPostTitle;
+	}
+
+
 }
