@@ -68,7 +68,7 @@ class Comment implements \JsonSerializable {
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function _construct($newCommentId, $newCommentPostId, $newCommentUserId, $newCommentCommentId,
+	public function __construct($newCommentId, $newCommentPostId, $newCommentUserId, $newCommentCommentId,
 										$newCommentDateTime = null, $newCommentContent) {
 		try {
 			$this->setCommentId($newCommentId);
