@@ -7,6 +7,7 @@
  */
 class Post implements \JsonSerializable {
 	use validateDate;
+	use validateUuid;
 
 	/**
 	 * ID for this post; primary key
@@ -85,7 +86,13 @@ class Post implements \JsonSerializable {
 	 * @var Uuid $newPostId the new value of the post ID
 	 */
 	public function setPostId($newPostId): void {
-		$this->postId = $newPostId;
+		try {
+			$uuid = self::validateUuid($newPostId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->postId = $uuid;
 	}
 
 	/**
@@ -103,7 +110,13 @@ class Post implements \JsonSerializable {
 	 * @var Uuid $newPostUserId the new value of the post creator's ID
 	 */
 	public function setPostUserId($newPostUserId): void {
-		$this->postUserId = $newPostUserId;
+		try {
+			$uuid = self::validateUuid($newPostUserId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->postUserId = $uuid;
 	}
 
 	/**
