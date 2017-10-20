@@ -6,7 +6,6 @@
  * @author Calder Benjamin <calderbenjamin@gmail.com>
  */
 class User implements \JsonSerializable {
-	use validateDate;
 
 	/**
 	 *ID for this user, the primary key
@@ -208,11 +207,8 @@ class User implements \JsonSerializable {
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 
-		$fields["tweetId"] = $this->tweetId->toString();
-		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+		$fields["userId"] = $this->userId->toString();
 
-		//format the date so that the front end can consume it
-		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
 		return($fields);
 	}
 }

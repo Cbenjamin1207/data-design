@@ -179,6 +179,12 @@ class Post implements \JsonSerializable {
 			$this->postDateTime = new DateTime();
 			return;
 		}
+		try {
+			$newPostDateTime = self::validateDateTime($newPostDateTime);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 		$this->postDateTime = $newPostDateTime;
 	}
 
@@ -190,11 +196,11 @@ class Post implements \JsonSerializable {
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 
-		$fields["tweetId"] = $this->tweetId->toString();
-		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+		$fields["postId"] = $this->postId->toString();
+		$fields["postUserId"] = $this->postUserId->toString();
 
 		//format the date so that the front end can consume it
-		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		$fields["postDateTime"] = round(floatval($this->postDateTime->format("U.u")) * 1000);
 		return($fields);
 	}
 }

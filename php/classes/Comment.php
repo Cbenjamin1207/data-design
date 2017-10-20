@@ -20,7 +20,7 @@ class Comment implements \JsonSerializable {
 	 *
 	 * @var Uuid $commentPostId
 	 */
-	private $commmentPostId;
+	private $commentPostId;
 
 	/**
 	 * ID for this comment's user; foreign key
@@ -73,8 +73,7 @@ class Comment implements \JsonSerializable {
 			$this->setCommentCommentId($newCommentCommentId);
 			$this->setCommentDateTime($newCommentDateTime);
 			$this->setCommentContent($newCommentContent);
-		}
-		catch(\InvalidArgumentException|\RangeException|\Exception|\TypeError $exception) {
+		} catch(\InvalidArgumentException|\RangeException|\Exception|\TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -104,7 +103,7 @@ class Comment implements \JsonSerializable {
 	 * @return Uuid the ID of the comment's psot
 	 */
 	public function getCommentPostId() : Uuid {
-		return($this->commmentPostId);
+		return($this->commentPostId);
 	}
 
 	/**
@@ -113,7 +112,7 @@ class Comment implements \JsonSerializable {
 	 * @var Uuid $newCommentPostId the new ID of the comment's post
 	 */
 	public function setCommentPostId($newCommentPostId) : void {
-		$this->commmentPostId = $newCommentPostId;
+		$this->commentPostId = $newCommentPostId;
 	}
 
 	/**
@@ -171,6 +170,12 @@ class Comment implements \JsonSerializable {
 			$this->postDateTime = new DateTime();
 			return;
 		}
+		try {
+			$newCommentDateTime = self::validateDateTime($newCommentDateTime);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 		$this->commentDateTime = $newCommentDateTime;
 	}
 
@@ -206,11 +211,15 @@ class Comment implements \JsonSerializable {
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 
-		$fields["tweetId"] = $this->tweetId->toString();
-		$fields["tweetProfileId"] = $this->tweetProfileId->toString();
+		$fields["commentId"] = $this->commentId->toString();
+		$fields["commentPostId"] = $this->commentPostId->toString();
+		$fields["commentUserId"] = $this->commentUserId->toString();
+		if($this->commentCommentId !== null) {
+			$fields["commentCommentId"] = $this->commentCommentId->toString();
+		}
 
 		//format the date so that the front end can consume it
-		$fields["tweetDate"] = round(floatval($this->tweetDate->format("U.u")) * 1000);
+		$fields["commentDateTime"] = round(floatval($this->commentDateTime->format("U.u")) * 1000);
 		return($fields);
 	}
 }
