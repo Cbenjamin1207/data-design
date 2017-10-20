@@ -235,6 +235,26 @@ class User implements \JsonSerializable {
 	}
 
 	/**
+	 * updates this user in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE `user` SET userEmail = :userEmail, userHash = :userHash, userSalt = :userSalt,
+			userName = :userName WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+
+		$parameters = ["userId" => $this->userId->getBytes(),"userEmail" => $this->userEmail,
+			"userHash" => $this->userHash, "userSalt" => $this->userSalt, "userName" => $this->userName];
+		$statement->execute($parameters);
+	}
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
