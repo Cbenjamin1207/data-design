@@ -172,4 +172,28 @@ class Content {
 		}
 		$this->commentDateTime = $newCommentDateTime;
 	}
+
+	/**
+	 * accessor method for commentContent
+	 *
+	 * @return string the content of the comment
+	 */
+	public function getCommentContent() : string {
+		return($this->commentContent);
+	}
+
+	/**
+	 * mutator method for commentContent
+	 *
+	 * @var string $newCommentContent the new content of the comment
+	 * @throws \InvalidArgumentException if comment is empty or insecure
+	 */
+	public function setCommentContent($newCommentContent) : void {
+		$newCommentContent = trim($newCommentContent);
+		$newCommentContent = filter_var($newCommentContent, FILTER_SANITIZE_STRING);
+		if(empty($newCommentContent) === true) {
+			throw(new \InvalidArgumentException("Comment is empty or insecure"));
+		}
+		$this->commentContent = $newCommentContent;
+	}
 }
