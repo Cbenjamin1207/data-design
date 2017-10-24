@@ -245,13 +245,13 @@ class Post implements \JsonSerializable {
 	 **/
 	public function update(\PDO $pdo) : void {
 
-		$query = "UPDATE post SET postTitle = :postTitle, postContent = :postContent,
-			postDateTime = :postDateTime WHERE userId = :userId";
+		$query = "UPDATE post SET postTitle = :postTitle, postContent = :postContent, postDateTime = :postDateTime 
+			WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
 
-
+		$formattedDate = $this->postDateTime->format("Y-m-d H:i:s.u");
 		$parameters = ["postId" => $this->postId->getBytes(),"postTitle" => $this->postTitle,
-			"postContent" => $this->postContent, "postDateTime" => $this->postDateTime];
+			"postContent" => $this->postContent, "postDateTime" => $formattedDate];
 		$statement->execute($parameters);
 	}
 

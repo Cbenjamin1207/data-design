@@ -232,6 +232,233 @@ class Comment implements \JsonSerializable {
 	}
 
 	/**
+	 * Inserts this comment into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when $pdo is not a PDO connection object
+	 */
+	public function insert(\PDO $pdo) : void {
+		$query = "INSERT INTO comment(commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent) 
+			VALUES (:commentId, :commentPostId, :commentUserId, :commentCommentId, :commentDateTime, :commentContent)";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->commentDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["commentId" => $this->commentId->getBytes(), "commentPostId" => $this->commentPostId->getBytes(),
+			"commentCommentId" => $this->commentCommentId->getBytes(), "commentDateTime" => $formattedDate, "commentContent" => $this->commentContent];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * Deletes this comment from mySql
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) : void {
+		$query = "DELETE FROM comment WHERE commentId = :commentId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["commentId" => $this->commentId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates this comment in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		$query = "UPDATE comment SET commentDateTime = :commentDateTime, commentContent = :commentContent 
+			WHERE commentId = :commentId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->commentDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["commentId" => $this->commentId->getBytes(), "commentDateTime" => $formattedDate, "commentContent" => $this->commentContent];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets the comment by commentId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param  $commentId comment ID to search for
+	 * @return Comment|null post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getCommentByCommentId(\PDO $pdo, $commentId) : ?comment {
+		try {
+			$commentId = self::validateUuid($commentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent FROM comment
+			WHERE commentId = :commentId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["commentId" => $commentId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$comment = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
+					$row["commentDateTime"], $row["commentContent"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($comment);
+	}
+
+	/**
+	 * gets the comment by commentPostId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param  $commentPostId comment's post ID to search for
+	 * @return Comment|null post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getCommentByCommentPostId(\PDO $pdo, $commentPostId) : ?comment {
+		try {
+			$commentPostId = self::validateUuid($commentPostId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent FROM comment
+			WHERE commentPostId = :commentPostId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["commentPostId" => $commentPostId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$comment = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
+					$row["commentDateTime"], $row["commentContent"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($comment);
+	}
+
+	/**
+	 * gets the comment by commentPostId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param  $commentUserId comment's user ID to search for
+	 * @return Comment|null post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getCommentByCommentUserId(\PDO $pdo, $commentUserId) : ?comment {
+		try {
+			$commentUserId = self::validateUuid($commentUserId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent FROM comment
+			WHERE commentUserId = :commentUserId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["commentUserId" => $commentUserId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$comment = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
+					$row["commentDateTime"], $row["commentContent"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($comment);
+	}
+
+	/**
+	 * gets the comment by commentPostId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param  $commentPostId comment's comment ID to search for
+	 * @return Comment|null post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getCommentByCommentCommentId(\PDO $pdo, $commentCommentId) : ?comment {
+		try {
+			$commentCommentId = self::validateUuid($commentCommentId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent FROM comment
+			WHERE commentCommentId = :commentCommentId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["commentCommentId" => $commentCommentId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$comment = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
+					$row["commentDateTime"], $row["commentContent"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($comment);
+	}
+
+	/**
+	 * gets all comments
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllComments(\PDO $pdo) : \SPLFixedArray {
+		$query = "SELECT commentId, commentPostId, commentUserId, commentCommentId, commentDateTime, commentContent FROM comment";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		$comments = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
+					$row["commentDateTime"], $row["commentContent"]);
+				$comment[$comments->key()] = $comment;
+				$comment->next();
+			} catch(\Exception $exception) {
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($comments);
+	}
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
