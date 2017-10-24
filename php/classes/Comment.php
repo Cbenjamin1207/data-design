@@ -244,7 +244,7 @@ class Comment implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		$formattedDate = $this->commentDateTime->format("Y-m-d H:i:s.u");
-		$parameters = ["commentId" => $this->commentId->getBytes(), "commentPostId" => $this->commentPostId->getBytes(),
+		$parameters = ["commentId" => $this->commentId->getBytes(), "commentPostId" => $this->commentPostId->getBytes(), "commentUserId" => $this->commentUserId->getBytes(),
 			"commentCommentId" => $this->commentCommentId->getBytes(), "commentDateTime" => $formattedDate, "commentContent" => $this->commentContent];
 		$statement->execute($parameters);
 	}
@@ -287,7 +287,7 @@ class Comment implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param  $commentId comment ID to search for
-	 * @return Comment|null post found or null if not found
+	 * @return Comment|null Comment found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
@@ -324,7 +324,7 @@ class Comment implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param  $commentPostId comment's post ID to search for
-	 * @return Comment|null post found or null if not found
+	 * @return Comment|null Comment found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
@@ -357,11 +357,11 @@ class Comment implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the comment by commentPostId
+	 * gets the comment by commentUserId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param  $commentUserId comment's user ID to search for
-	 * @return Comment|null post found or null if not found
+	 * @return Comment|null Comment found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
@@ -394,11 +394,11 @@ class Comment implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the comment by commentPostId
+	 * gets the comment by commentCommentId
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param  $commentPostId comment's comment ID to search for
-	 * @return Comment|null post found or null if not found
+	 * @param  $commentCommentId comment's comment ID to search for
+	 * @return Comment|null Comment found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
@@ -434,7 +434,7 @@ class Comment implements \JsonSerializable {
 	 * gets all comments
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @return \SplFixedArray SplFixedArray of Comments found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
@@ -450,7 +450,7 @@ class Comment implements \JsonSerializable {
 				$comment = new Comment($row["commentId"], $row["commentPostId"], $row["commentUserId"], $row["commentCommentId"],
 					$row["commentDateTime"], $row["commentContent"]);
 				$comment[$comments->key()] = $comment;
-				$comment->next();
+				$comments->next();
 			} catch(\Exception $exception) {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
