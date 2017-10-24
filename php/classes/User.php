@@ -276,7 +276,7 @@ class User implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
-		$query = "SELECT userId, userEmail, userHash, userSalt,userName FROM `user` WHERE userId = :userId";
+		$query = "SELECT userId, userEmail, userHash, userSalt, userName FROM `user` WHERE userId = :userId";
 		$statement = $pdo->prepare($query);
 
 		$parameters = ["userId" => $userId->getBytes()];
@@ -300,7 +300,7 @@ class User implements \JsonSerializable {
 	 * gets all users
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @return \SplFixedArray SplFixedArray of Users found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
