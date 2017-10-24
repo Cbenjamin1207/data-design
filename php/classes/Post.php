@@ -312,7 +312,7 @@ class Post implements \JsonSerializable {
 			WHERE postUserId = :postUserId";
 		$statement = $pdo->prepare($query);
 
-		$parameters = ["postId" => $postId->getBytes()];
+		$parameters = ["postId" => $postUserId->getBytes()];
 		$statement->execute($parameters);
 
 		try {
