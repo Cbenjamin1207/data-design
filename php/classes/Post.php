@@ -237,7 +237,7 @@ class Post implements \JsonSerializable {
 	}
 
 	/**
-	 * updates this user in mySQL
+	 * updates this post in mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -333,7 +333,7 @@ class Post implements \JsonSerializable {
 	 * gets all posts
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @return \SplFixedArray SplFixedArray of Posts found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
