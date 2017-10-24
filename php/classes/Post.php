@@ -222,6 +222,142 @@ class Post implements \JsonSerializable {
 	}
 
 	/**
+	 * Deletes this post from mySql
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) : void {
+		$query = "DELETE FROM post WHERE postId = :postId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["postId" => $this->postId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates this user in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		$query = "UPDATE post SET postTitle = :postTitle, postContent = :postContent,
+			postDateTime = :postDateTime WHERE userId = :userId";
+		$statement = $pdo->prepare($query);
+
+
+		$parameters = ["postId" => $this->postId->getBytes(),"postTitle" => $this->postTitle,
+			"postContent" => $this->postContent, "postDateTime" => $this->postDateTime];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets the post by postId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param  $postId post ID to search for
+	 * @return Post|null post found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getPostByPostId(\PDO $pdo, $postId) : ?post {
+		try {
+			$postId = self::validateUuid($postId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT postId, postUserId, postTitle, postContent, postDateTime FROM post 
+			WHERE postId = :postId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["postId" => $postId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$post = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$post = new Post($row["postId"], $row["postUserId"], $row["postTitle"], $row["postContent"],
+					$row["postDateTime"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($post);
+	}
+
+	/**
+	 * gets the post by postUserId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param $postUserId post user id to search for
+	 * @return Post|null user found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getPostByPostUserId(\PDO $pdo, $postUserId) : ?post {
+		try {
+			$postUserId = self::validateUuid($postUserId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		$query = "SELECT postId, postUserId, postTitle, postContent, postDateTime FROM post 
+			WHERE postUserId = :postUserId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["postId" => $postId->getBytes()];
+		$statement->execute($parameters);
+
+		try {
+			$post = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$post = new Post($row["postId"], $row["postUserId"], $row["postTitle"], $row["postContent"],
+					$row["postDateTime"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($post);
+	}
+
+	/**
+	 * gets all posts
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllPosts(\PDO $pdo) : \SPLFixedArray {
+		$query = "SELECT postId, postUserId, postTitle, postContent, postDateTime FROM post";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		$posts = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$post = new Post($row["postId"], $row["postUserId"], $row["postTitle"], $row["postContent"],
+					$row["postDateTime"]);
+				$post[$posts->key()] = $post;
+				$posts->next();
+			} catch(\Exception $exception) {
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($posts);
+	}
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize

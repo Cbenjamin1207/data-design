@@ -264,12 +264,12 @@ class User implements \JsonSerializable {
 	 * gets the user by userId
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $userId user id to search for
+	 * @param $userId user id to search for
 	 * @return user|null user found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type
 	 **/
-	public static function getUserByUserId(\PDO $pdo, string $userId) : ?user {
+	public static function getUserByUserId(\PDO $pdo, $userId) : ?user {
 		try {
 			$userId = self::validateUuid($userId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
